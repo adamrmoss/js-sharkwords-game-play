@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title></title>
+    <link rel="stylesheet" href="/static/css/style.css">
+  </head>
+  <body>
+    <section id="shark-img">
+      <img src="/static/images/guess0.png">
+    </section>
+
+    <a id="play-again" style="display: none;">
+      The shark got you! Click here to play again.
+    </a>
+    <a id="win" style="display: none;">
+      Congratulations! 🥳 You won!
+    </a>
+
+    <section id="word-container"></section>
+
+    <section id="letter-buttons"></section>
+
+    <script>
+      const ALPHABET="abcdefghijklmnopqrstuvwxyz",WORDS=["strawberry","orange","apple","banana","pineapple","kiwi","peach","pecan","eggplant","durian","peanut","chocolate"];let numWrong=0,correctGuesses=0;const createDivsForChars=e=>{const t=document.querySelector("#word-container");for(const n of e)t.insertAdjacentHTML("beforeend",`<div class="letter-box ${n}"></div>`)},generateLetterButtons=()=>{const e=document.querySelector("#letter-buttons");for(const t of ALPHABET)e.insertAdjacentHTML("beforeend",`<button>${t}</button>`)},disableLetterButton=e=>{e.disabled=!0},disableAllLetterButtons=()=>{const e=document.querySelectorAll("button");for(const t of e)t.disabled=!0},isLetterInWord=e=>null!==document.querySelector(`div.${e}`),handleCorrectGuess=(e,t)=>{const n=document.querySelectorAll(`div.${e}`);for(const t of n)t.innerHTML=e,correctGuesses+=1;correctGuesses===t.length&&(disableAllLetterButtons(),document.querySelector("#win").style.display="block")},handleWrongGuess=()=>{numWrong+=1,document.querySelector("#shark-img img").setAttribute("src",`/static/images/guess${numWrong}.png`),5===numWrong&&(disableAllLetterButtons(),document.querySelector("#play-again").style.display="block")},resetGame=()=>{window.location="/demo"};!function(){const e=WORDS[Math.floor(Math.random()*WORDS.length)];createDivsForChars(e),generateLetterButtons();const t=document.querySelectorAll("button");for(const n of t)n.addEventListener("click",t=>{const n=t.target;disableLetterButton(n);const o=n.textContent;isLetterInWord(o)?handleCorrectGuess(o,e):(numWrong+=1,document.querySelector("#shark-img img").setAttribute("src",`/static/images/guess${numWrong}.png`),5===numWrong&&(disableAllLetterButtons(),document.querySelector("#play-again").style.display="block"))});document.querySelector("#play-again").addEventListener("click",resetGame),document.querySelector("#win").addEventListener("click",resetGame)}();
+    </script>
+  </body>
+</html>

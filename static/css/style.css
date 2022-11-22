@@ -1,0 +1,66 @@
+body {
+  font-family: monospace;
+  font-size: 52px;
+  background-color: lightblue;
+}
+
+section {
+  display: flex;
+  justify-content: center;
+}
+
+#letter-buttons {
+  width: 40%;
+  margin: 12px auto;
+  text-align: center;
+  flex-wrap: wrap;
+}
+
+#play-again {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 18px;
+  text-decoration: underline;
+  color: red;
+  cursor: pointer;
+  margin: 0.67em 0;
+}
+
+#play-again:hover {
+  text-decoration: none;
+}
+
+#win {
+  display: block;
+  text-align: center;
+  font-weight: bold;
+  font-size: 22px;
+  text-decoration: underline;
+  color: rgb(112, 0, 160);
+  cursor: pointer;
+  margin: 0.67em 0;
+}
+
+.letter-box {
+  width: 1.5em;
+  height: 2em;
+  margin: 5px;
+  border-bottom: 1px solid black;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+button {
+  width: 1.5em;
+  height: 1.5em;
+  font-size: 0.6em;
+  background: white;
+  margin: 0 5px;
+  cursor: pointer;
+}
+
+button[disabled='true'] {
+  cursor: default;
+}
